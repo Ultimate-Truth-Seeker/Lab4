@@ -30,7 +30,7 @@ public class Lab4 {
                     do {
                         System.out.println("Ingrese 1 si desea un plan básico, o 2 si desea se un usuario premium");
                         o = s.nextInt();
-                    } while (o < 0 || o > 2) ;
+                    } while (o < 1 || o > 2) ;
                     boolean básico = false;
                     if (o==1){
                         básico = true;
@@ -98,10 +98,17 @@ public class Lab4 {
                             users.get(indexloged).setCuotas();
                             users.get(indexloged).setClaseVuelo();
                         
-                        //TODO: itinerario
+                        System.out.println("Itinerario: ");
+                        if (users.get(indexloged).isIdaVuelta()) {
+                            System.out.println("Fecha de Ida: " + users.get(indexloged).getIda() + ", Fecha de vuelta: " + users.get(indexloged).getVuelta() + ", Cantidad de boletos: " + users.get(indexloged).getBoletos() + ", Aerolínea: " + users.get(indexloged).getAerolínea() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo());
+                        } else {
+                            System.out.println("Fecha de Ida: " + users.get(indexloged).getIda() + ", Cantidad de boletos: " + users.get(indexloged).getBoletos() + ", Aerolínea: " + users.get(indexloged).getAerolínea() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo());
+                        }
                         
                             users.get(indexloged).AsignacionAsiento();
                             users.get(indexloged).setNumMaleta();
+
+                        System.out.println("Tarjeta: " + users.get(indexloged).getTarjeta() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo() + ", No. de maletas:" + users.get(indexloged).getMaletas() + ", Descuento por cupones: " + users.get(indexloged).getDescuento()*100 + "%");
                         
                     } else {
                         System.out.println("Complete la información de reserva primero");
@@ -126,9 +133,14 @@ public class Lab4 {
                     }
                     if (users.get(indexloged).isBásico() && op2 == 2) {
                         users.get(indexloged).mejorar();
+                        System.out.println("Mejora realizada");
                     }
                     if (users.get(indexloged).isBásico() && op2 == 3) {
+                        System.out.println("Ingrese el número de cupón de 10%:");
+                        s.nextLine();
+                        s.nextLine();
                         users.get(indexloged).AplicarDescuento();
+                        System.out.println("Cupón canjeado");
                     }
             
                 case 6:

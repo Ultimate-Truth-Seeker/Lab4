@@ -1,7 +1,12 @@
 package Lab4;
 
+import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * Clase que implementa la interfaz común de Base para los usuarios
+ * @author Ultimate-Truth-Seeker
+ * @version 13/11/2023
+ */
 public class UsuarioBase implements Base{
     private String usuario;
     private String contraseña;
@@ -25,16 +30,26 @@ public class UsuarioBase implements Base{
     }
 
     public void AplicarDescuento(){
-
+        this.descuento += 0.1;
     }
    
     public boolean VerificarReserva() {
-        return false;
+        if (ida.equals(null)){ 
+            return false;
+        }
+        if (idaVuelta && vuelta.equals(null)) {
+            return false;
+        }
+        if (Boletos < 1 || aerolínea.equals(null)){
+            return false;
+        }
+        return true;
     }
     /**
      * método para subir la categoría de usuario. Fue necesario añadirlo como un extra porque no había un método para hacerlo
      */
     public void mejorar(){
+        setTarjeta();
         this.básico = false;
     }
 
@@ -42,64 +57,142 @@ public class UsuarioBase implements Base{
 
     @Override
     public void AsignacionAsiento() {
+        if (básico = true) {
+            Random r = new Random();
+            asiento = r.nextInt(100);
+        } else {
+            Scanner s = new Scanner(System.in);
+            System.out.println("Premium: escoja su número de asiento:");
+            this.asiento = s.nextInt();
+            s.close();
+        }
+    }
+
+    @Override
+    public void ModificarContra() {
+        System.out.println("Ingrese su nueva contraseña:");
         Scanner s = new Scanner(System.in);
-        System.out.println("");
-        this.asiento = s.nextInt();
+        contraseña = s.nextLine();
         s.close();
         
     }
 
     @Override
-    public void ModificarContra() {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public void setAerolinea() {
-        // TODO Auto-generated method stub
+        System.out.println("Escriba la aerolínea en la que desea volar:");
+        Scanner s = new Scanner(System.in);
+        aerolínea = s.nextLine();
+        s.close();
         
     }
 
     @Override
     public void setBoletos() {
-        // TODO Auto-generated method stub
+        System.out.println("Ingrese el número de boletos:");
+        Scanner s = new Scanner(System.in);
+        Boletos = s.nextInt();
+        while (Boletos < 1) {
+            Boletos = s.nextInt();
+        }
+        s.close();
         
     }
 
     @Override
     public void setClaseVuelo() {
-        // TODO Auto-generated method stub
+        if (básico) {
+            System.out.println("Ingrese 1 para vuelo en coach o 2 para vuelo en primera clase:");
+            Scanner s = new Scanner(System.in); int oo;
+            do {
+                oo = s.nextInt();
+            } while (oo < 1 || oo > 2);
+            if (oo == 1) {
+                ClaseVuelo = "Coach";
+            } else if (oo == 2) {
+                ClaseVuelo = "PrimeraClase";
+            }
+            s.close();
+        } else {
+            System.out.println("Premium: usted vuela en primera clase");
+            ClaseVuelo = "PrimeraClase";
+        }
         
     }
 
     @Override
     public void setCuotas() {
-        // TODO Auto-generated method stub
+        if (básico) {
+            System.out.println("Ingrese el número de cuotas a pagar:");
+            Scanner s = new Scanner(System.in);
+            cuotas = s.nextInt();
+            while (cuotas < 1 || cuotas > 24){
+                System.out.println("Debe ser entre 1 y 24");
+                cuotas = s.nextInt();
+            }
+            s.close();
+        } else {
+            System.out.println("Premium: su pago es de contado");
+            cuotas  = 1;
+        }
         
     }
 
     @Override
     public void setNumMaleta() {
-        // TODO Auto-generated method stub
+        if (básico = false) {
+            System.out.println("Premium: Ingrese el número de maletas a llevar:");
+            Scanner s = new Scanner(System.in);
+            maletas = s.nextInt();
+            s.close();
+        } else {
+            maletas = 1;
+        }
         
     }
 
     @Override
     public void setTarjeta() {
-        // TODO Auto-generated method stub
+        System.out.println("Ingrese su número de tarjeta para pagar:");
+        Scanner s = new Scanner(System.in);
+        tarjeta = s.nextInt();
+        s.close();
         
     }
 
     @Override
     public void setVueloFinal() {
-        // TODO Auto-generated method stub
-        
+        Scanner s = new Scanner(System.in);
+        System.out.println("¿Es un viaje de ida y vuelta? 1.Sí, 2.No");
+        int op = s.nextInt();
+        while (op < 1 || op > 2) {
+            op = s.nextInt();
+        }
+        if (op == 1) {
+            System.out.println("Ingrese el año del vuelo:");
+            int yy = s.nextInt();
+            System.out.println("Ingrese el mes del vuelo:");
+            int mm = s.nextInt();
+            System.out.println("Ingrese el día de vuelta de viaje:");
+            int dd = s.nextInt();
+            vuelta = dd+"/"+mm+"/"+yy;
+            idaVuelta = true;
+            s.close();
+        } else {
+            idaVuelta = false;
+        }
     }
 
     @Override
     public void setVueloInicio() {
-        // TODO Auto-generated method stub
+        Scanner s = new Scanner(System.in);
+        System.out.println("Ingrese el año del vuelo:");
+        int yy = s.nextInt();
+        System.out.println("Ingrese el mes del vuelo:");
+        int mm = s.nextInt();
+        System.out.println("Ingrese el día de inicio de viaje:");
+        int dd = s.nextInt();
+        ida = dd+"/"+mm+"/"+yy;
+        s.close();
         
     }
 
