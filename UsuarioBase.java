@@ -57,7 +57,7 @@ public class UsuarioBase implements Base{
 
     @Override
     public void AsignacionAsiento() {
-        if (básico = true) {
+        if (básico == true) {
             Random r = new Random();
             asiento = r.nextInt(100);
         } else {
@@ -179,6 +179,7 @@ public class UsuarioBase implements Base{
 
         } else {
             idaVuelta = false;
+            vuelta = null;
         }
     }
 

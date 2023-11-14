@@ -1,5 +1,7 @@
 package Lab4;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +15,25 @@ import java.util.Scanner;
 public class Lab4 {
     public static void main(String[] args) {
         List<UsuarioBase> users = new ArrayList<>();
+        List<String> confirmaciones = new ArrayList<>();
+        try (Scanner rd = new Scanner(new File("users.csv"))) {
+            while (rd.hasNextLine()) {
+                Scanner lr = new Scanner(rd.nextLine());
+                lr.useDelimiter(",");
+                String usuario = lr.next();
+                String contraseña = lr.next();
+                boolean basic = Boolean.parseBoolean(lr.next());
+                users.add(new UsuarioBase(usuario, contraseña, basic));
+            }
+        } catch (Exception e) {
+        }
+        try (Scanner rd = new Scanner(new File("confirmaciones.csv"))){
+            while (rd.hasNextLine()) {
+                confirmaciones.add(rd.nextLine());
+            }
+        } catch (Exception e) {
+
+        }
         Scanner s = new Scanner(System.in);
         boolean menu = true;
         int indexloged = -1;
@@ -117,7 +138,8 @@ public class Lab4 {
                             users.get(indexloged).setNumMaleta();
 
                         System.out.println("Tarjeta: " + users.get(indexloged).getTarjeta() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo() + ", No. de maletas: " + users.get(indexloged).getMaletas() + ", número de asiento: " + users.get(indexloged).getAsiento()+ ", Descuento por cupones: " + users.get(indexloged).getDescuento()*100 + "%");
-                        
+                        System.out.println("Confirmación creada");
+                        confirmaciones.add(users.get(indexloged).getIda()+ ","+users.get(indexloged).getVuelta()+","+users.get(indexloged).getBoletos()+","+users.get(indexloged).getAerolínea()+","+users.get(indexloged).getTarjeta()+","+users.get(indexloged).getCuotas()+","+users.get(indexloged).getClaseVuelo() + ","+users.get(indexloged).getAsiento()+","+users.get(indexloged).getMaletas()+","+users.get(indexloged).getDescuento());
                     } else {
                         System.out.println("Complete la información de reserva primero");
                     }
@@ -158,6 +180,20 @@ public class Lab4 {
                 default:
                     break;
             }
+        }
+        try (FileWriter wr = new FileWriter(new File("users.csv"))) {
+            for (UsuarioBase u : users) {
+                wr.write(u.getUsuario()+","+u.getContraseña()+","+u.isBásico()+"\n");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al guardar usuarios");
+        }
+        try (FileWriter wr = new FileWriter(new File("confirmaciones.csv"))) {
+            for (String c : confirmaciones) {
+                wr.write(c+"\n");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al guardar confirmaciones");
         }
         s.close();
     }
