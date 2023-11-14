@@ -5,19 +5,47 @@ import java.util.Scanner;
 public class UsuarioBase implements Base{
     private String usuario;
     private String contraseña;
-    private boolean Básico;
-    private String aerolínea;
-    private int asiento;
+    private boolean básico;
+    private boolean idaVuelta;
+    private String ida;
+    private String vuelta;
     private int Boletos;
-    private String ClaseVuelo;
-
+    private String aerolínea;
+    private int tarjeta;
     private int cuotas;
+    private String ClaseVuelo;
+    private int asiento;
+    private int maletas;
+    private float descuento;
+    
+    public UsuarioBase(String usuario, String contraseña, boolean básico) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+        this.básico = básico;
+    }
+
+    public void AplicarDescuento(){
+
+    }
+   
+    public boolean VerificarReserva() {
+        return false;
+    }
+    /**
+     * método para subir la categoría de usuario. Fue necesario añadirlo como un extra porque no había un método para hacerlo
+     */
+    public void mejorar(){
+        this.básico = false;
+    }
+
+    
 
     @Override
     public void AsignacionAsiento() {
         Scanner s = new Scanner(System.in);
         System.out.println("");
-        asiento = s.nextInt();
+        this.asiento = s.nextInt();
+        s.close();
         
     }
 
@@ -73,6 +101,146 @@ public class UsuarioBase implements Base{
     public void setVueloInicio() {
         // TODO Auto-generated method stub
         
+    }
+
+
+
+
+
+
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+
+
+
+
+
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+
+
+
+
+
+
+    public boolean isBásico() {
+        return básico;
+    }
+
+
+
+
+
+
+
+    public boolean isIdaVuelta() {
+        return idaVuelta;
+    }
+
+
+
+
+
+
+
+    public String getIda() {
+        return ida;
+    }
+
+
+
+
+
+
+
+    public String getVuelta() {
+        return vuelta;
+    }
+
+
+
+
+
+
+
+    public int getBoletos() {
+        return Boletos;
+    }
+
+
+
+
+
+
+
+    public String getAerolínea() {
+        return aerolínea;
+    }
+
+
+
+
+
+
+
+    public int getTarjeta() {
+        return tarjeta;
+    }
+
+
+
+
+
+
+
+    public int getCuotas() {
+        return cuotas;
+    }
+
+
+
+
+
+
+
+    public String getClaseVuelo() {
+        return ClaseVuelo;
+    }
+
+
+
+
+
+
+
+    public int getAsiento() {
+        return asiento;
+    }
+
+
+
+
+
+
+
+    public int getMaletas() {
+        return maletas;
+    }
+
+
+
+
+
+
+
+    public float getDescuento() {
+        return descuento;
     }
     
    
