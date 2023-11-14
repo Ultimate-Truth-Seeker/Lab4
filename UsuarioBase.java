@@ -23,16 +23,29 @@ public class UsuarioBase implements Base{
     private int maletas;
     private float descuento;
     
+    /**
+     * creador de usuario
+     * @param usuario
+     * @param contraseña
+     * @param básico
+     */
     public UsuarioBase(String usuario, String contraseña, boolean básico) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.básico = básico;
     }
 
+    /**
+     * descuenta el 10%
+     */
     public void AplicarDescuento(){
         this.descuento += 0.1;
     }
    
+    /**
+     * verifica los campos de reserva
+     * @return si se puede confirmar o no la reserva
+     */
     public boolean VerificarReserva() {
         if (ida == null){ 
             return false;
@@ -46,7 +59,7 @@ public class UsuarioBase implements Base{
         return true;
     }
     /**
-     * método para subir la categoría de usuario. Fue necesario añadirlo como un extra porque no había un método para hacerlo
+     * método para subir la categoría de usuario. Fue necesario añadirlo como un extra porque no había un método adecuado para implementar esta parte
      */
     public void mejorar(){
         setTarjeta();
@@ -196,147 +209,104 @@ public class UsuarioBase implements Base{
 
         
     }
-
-
-
-
-
-
-
+    // getters de atributos
+    
+    /**
+     * @return usuario
+     */
     public String getUsuario() {
         return usuario;
     }
-
-
-
-
-
-
-
+    
+    /**
+     * @return contraseña
+     */
     public String getContraseña() {
         return contraseña;
     }
 
-
-
-
-
-
-
+    /**
+     * @return verdadero si es básico, falso si es VIP
+     */
     public boolean isBásico() {
         return básico;
     }
 
-
-
-
-
-
-
+    /**
+     * @return verdadero si el viaje es de ida y vuelta, falso si solo de ida
+     */
     public boolean isIdaVuelta() {
         return idaVuelta;
     }
 
-
-
-
-
-
-
+    /**
+     * @return fecha de ida
+     */
     public String getIda() {
         return ida;
     }
 
-
-
-
-
-
-
+    /**
+     * @return fecha de vuelta
+     */
     public String getVuelta() {
         return vuelta;
     }
 
-
-
-
-
-
-
+    /**
+     * @return boletos
+     */
     public int getBoletos() {
         return Boletos;
     }
 
-
-
-
-
-
-
+    /**
+     * @return aerolínea
+     */
     public String getAerolínea() {
         return aerolínea;
     }
 
-
-
-
-
-
-
+    /**
+     * @return tarjeta de pago
+     */
     public int getTarjeta() {
         return tarjeta;
     }
 
-
-
-
-
-
-
+    /**
+     * @return cuotas de pago
+     */
     public int getCuotas() {
         return cuotas;
     }
 
-
-
-
-
-
-
+    /**
+     * @return clase de vuelo
+     */
     public String getClaseVuelo() {
         return ClaseVuelo;
     }
 
-
-
-
-
-
-
+    /**
+     * @return asiento
+     */
     public int getAsiento() {
         return asiento;
     }
 
-
-
-
-
-
-
+    /**
+     * @return maletas
+     */
     public int getMaletas() {
         return maletas;
     }
 
-
-
-
-
-
-
+    /**
+     * @return descuento
+     */
     public float getDescuento() {
         return descuento;
     }
-    
-   
     
 }

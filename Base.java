@@ -1,7 +1,7 @@
 package Lab4;
 /**Interfaz para usuarios, clase a intercambiar @author grupo 7*/
 public interface Base{
-
+    // métodos para establecer atributos de reserva y confirmación, según el nombre. 
     public void setVueloInicio();
     public void setVueloFinal();
     public void setBoletos();

@@ -16,6 +16,7 @@ public class Lab4 {
     public static void main(String[] args) {
         List<UsuarioBase> users = new ArrayList<>();
         List<String> confirmaciones = new ArrayList<>();
+        // Lectura de archivos
         try (Scanner rd = new Scanner(new File("users.csv"))) {
             while (rd.hasNextLine()) {
                 Scanner lr = new Scanner(rd.nextLine());
@@ -36,7 +37,8 @@ public class Lab4 {
         }
         Scanner s = new Scanner(System.in);
         boolean menu = true;
-        int indexloged = -1;
+        int indexloged = -1;// usuario en sesión
+        // Menu
         while (menu) {
             if (indexloged != -1) {
                System.out.println("Sesión iniciada: " +users.get(indexloged).getUsuario()); 
@@ -44,7 +46,7 @@ public class Lab4 {
             System.out.println("Bienvenido, elija una opción: \n1.Registro\n2.Ingresar/Salir\n3.Reserva\n4.Confirmación\n5.Perfil\n6.Salir");
             int op = s.nextInt();
             switch (op) {
-                case 1:
+                case 1:// registrar usuario
                     s.nextLine();
                     System.out.println("Ingrese nombre de usuario:");
                     String usuario = s.nextLine();
@@ -64,7 +66,7 @@ public class Lab4 {
                     System.out.println("Nuevo usuario registrado");
                     break;
             
-                case 2:
+                case 2:// inicio y cierre de sesión
                 s.nextLine();
                     if (indexloged == -1) {
                         System.out.println("Inicio de sesión: \nIngrese su nombre de usuario");
@@ -98,7 +100,7 @@ public class Lab4 {
                     }
                     break;
                 
-                case 3:
+                case 3:// reserva
                 if (indexloged == -1){
                     System.out.println("Inicie sesión primero");
                     break;
@@ -116,7 +118,7 @@ public class Lab4 {
                     }
                     break;
             
-                case 4:
+                case 4:// confirmación
                 if (indexloged == -1){
                     System.out.println("Inicie sesión primero");
                     break;
@@ -145,7 +147,7 @@ public class Lab4 {
                     }
                     break;
             
-                case 5:
+                case 5:// configuración de perfil
                 if (indexloged == -1){
                     System.out.println("Inicie sesión primero");
                     break;
@@ -173,7 +175,7 @@ public class Lab4 {
                         System.out.println("Cupón canjeado");
                     }
                     break;
-                case 6:
+                case 6:// salida
                     menu = false;
                     break;
             
@@ -181,6 +183,7 @@ public class Lab4 {
                     break;
             }
         }
+        // Escritura de archivos
         try (FileWriter wr = new FileWriter(new File("users.csv"))) {
             for (UsuarioBase u : users) {
                 wr.write(u.getUsuario()+","+u.getContraseña()+","+u.isBásico()+"\n");
