@@ -34,13 +34,13 @@ public class UsuarioBase implements Base{
     }
    
     public boolean VerificarReserva() {
-        if (ida.equals(null)){ 
+        if (ida == null){ 
             return false;
         }
-        if (idaVuelta && vuelta.equals(null)) {
+        if (idaVuelta && vuelta == null) {
             return false;
         }
-        if (Boletos < 1 || aerolínea.equals(null)){
+        if (Boletos < 1 || aerolínea == null){
             return false;
         }
         return true;
@@ -64,16 +64,16 @@ public class UsuarioBase implements Base{
             Scanner s = new Scanner(System.in);
             System.out.println("Premium: escoja su número de asiento:");
             this.asiento = s.nextInt();
-            s.close();
+            
         }
     }
 
     @Override
     public void ModificarContra() {
         System.out.println("Ingrese su nueva contraseña:");
-        Scanner s = new Scanner(System.in);
-        contraseña = s.nextLine();
-        s.close();
+        Scanner ss = new Scanner(System.in);
+        contraseña = ss.nextLine();
+        
         
     }
 
@@ -82,7 +82,7 @@ public class UsuarioBase implements Base{
         System.out.println("Escriba la aerolínea en la que desea volar:");
         Scanner s = new Scanner(System.in);
         aerolínea = s.nextLine();
-        s.close();
+
         
     }
 
@@ -94,7 +94,7 @@ public class UsuarioBase implements Base{
         while (Boletos < 1) {
             Boletos = s.nextInt();
         }
-        s.close();
+
         
     }
 
@@ -111,7 +111,7 @@ public class UsuarioBase implements Base{
             } else if (oo == 2) {
                 ClaseVuelo = "PrimeraClase";
             }
-            s.close();
+
         } else {
             System.out.println("Premium: usted vuela en primera clase");
             ClaseVuelo = "PrimeraClase";
@@ -129,7 +129,7 @@ public class UsuarioBase implements Base{
                 System.out.println("Debe ser entre 1 y 24");
                 cuotas = s.nextInt();
             }
-            s.close();
+
         } else {
             System.out.println("Premium: su pago es de contado");
             cuotas  = 1;
@@ -139,11 +139,11 @@ public class UsuarioBase implements Base{
 
     @Override
     public void setNumMaleta() {
-        if (básico = false) {
+        if (básico == false) {
             System.out.println("Premium: Ingrese el número de maletas a llevar:");
             Scanner s = new Scanner(System.in);
             maletas = s.nextInt();
-            s.close();
+
         } else {
             maletas = 1;
         }
@@ -155,7 +155,7 @@ public class UsuarioBase implements Base{
         System.out.println("Ingrese su número de tarjeta para pagar:");
         Scanner s = new Scanner(System.in);
         tarjeta = s.nextInt();
-        s.close();
+
         
     }
 
@@ -176,7 +176,7 @@ public class UsuarioBase implements Base{
             int dd = s.nextInt();
             vuelta = dd+"/"+mm+"/"+yy;
             idaVuelta = true;
-            s.close();
+
         } else {
             idaVuelta = false;
         }
@@ -192,7 +192,7 @@ public class UsuarioBase implements Base{
         System.out.println("Ingrese el día de inicio de viaje:");
         int dd = s.nextInt();
         ida = dd+"/"+mm+"/"+yy;
-        s.close();
+
         
     }
 

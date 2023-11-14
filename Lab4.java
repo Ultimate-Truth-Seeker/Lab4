@@ -17,6 +17,9 @@ public class Lab4 {
         boolean menu = true;
         int indexloged = -1;
         while (menu) {
+            if (indexloged != -1) {
+               System.out.println("Sesión iniciada: " +users.get(indexloged).getUsuario()); 
+            }
             System.out.println("Bienvenido, elija una opción: \n1.Registro\n2.Ingresar/Salir\n3.Reserva\n4.Confirmación\n5.Perfil\n6.Salir");
             int op = s.nextInt();
             switch (op) {
@@ -54,6 +57,9 @@ public class Lab4 {
                                 if (users.get(indexloged).isBásico()) {
                                     System.out.println("Actualizate a premium y obten nuevos beneficios!\n1.Sí quiero, 2.No gracias");
                                     int opp = s.nextInt();
+                                    while (opp < 1 || opp > 2) {
+                                        opp = s.nextInt();
+                                    }
                                     if (opp == 1) {
                                         users.get(indexloged).mejorar();
                                         System.out.println("Mejora realizada");
@@ -62,7 +68,9 @@ public class Lab4 {
                                 break;
                             }
                         }
-                        System.out.println("Error, revise sus datos de inicio de sesión");
+                        if (indexloged == -1) {
+                            System.out.println("Error, revise sus datos de inicio de sesión");
+                        }
                     } else {
                         indexloged = -1;
                         System.out.println("Sesión finalizada");
@@ -108,7 +116,7 @@ public class Lab4 {
                             users.get(indexloged).AsignacionAsiento();
                             users.get(indexloged).setNumMaleta();
 
-                        System.out.println("Tarjeta: " + users.get(indexloged).getTarjeta() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo() + ", No. de maletas:" + users.get(indexloged).getMaletas() + ", Descuento por cupones: " + users.get(indexloged).getDescuento()*100 + "%");
+                        System.out.println("Tarjeta: " + users.get(indexloged).getTarjeta() + ", Clase de vuelo: " + users.get(indexloged).getClaseVuelo() + ", No. de maletas: " + users.get(indexloged).getMaletas() + ", número de asiento: " + users.get(indexloged).getAsiento()+ ", Descuento por cupones: " + users.get(indexloged).getDescuento()*100 + "%");
                         
                     } else {
                         System.out.println("Complete la información de reserva primero");
@@ -142,7 +150,7 @@ public class Lab4 {
                         users.get(indexloged).AplicarDescuento();
                         System.out.println("Cupón canjeado");
                     }
-            
+                    break;
                 case 6:
                     menu = false;
                     break;
